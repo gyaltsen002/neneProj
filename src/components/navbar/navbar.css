@@ -1,0 +1,22 @@
+@import url("https://fonts.cdnfonts.com/css/third-street");
+.navbar {
+  margin-right: 20px;
+}
+
+.navbar--links {
+  padding: 0 5px;
+  text-decoration: none;
+  color: rgb(58, 58, 58);
+  font-size: 17px;
+}
+
+.navbar--links:hover {
+  color: rgb(112, 111, 111);
+  transition: ease-in-out 0.5s;
+}
+
+.active {
+  border-bottom: grey 3px solid;
+  border-radius: 3px;
+  color: rgb(112, 111, 111);
+}
