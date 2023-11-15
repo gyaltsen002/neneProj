@@ -23,12 +23,13 @@ export const navbar = [
 
 // // Function to get all the images from "assets/galleryImg"
 export const getImages = function () {
-  const importAll = (r) => r.keys().map(r);
-  const images = importAll(
+  const importAll = (r) =>
+    r.keys().map((key, index) => ({ key: index, image: r(key) }));
+  const imagesWithKeys = importAll(
     require.context("../assets/galleryImg", false, /\.(jpg)$/)
   );
 
-  return images;
+  return imagesWithKeys;
 };
 
 export const IMAGEPERPAGE = 9;

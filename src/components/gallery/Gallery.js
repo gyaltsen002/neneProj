@@ -13,39 +13,63 @@ const Gallery = function () {
   // Modal
   const [modalIsOpen, setModalIsOpen] = useState(null);
 
-  const [imagesPerPage, setImagesPerPage] = useState(9);
+  // Images per page
+  const [imagesPerPage, setImagesPerPage] = useState(
+    window.innerWidth >= 700 && window.innerWidth <= 1200 ? 8 : 9
+  );
 
+  // Window Size
+  const [windowSize, setWindowSize] = useState(1200);
+
+  // The right, left and cross buttons attributes in modal
   const [imageAttributes, setImageAttributes] = useState(true);
-
-  const handleWindowResize = function (e) {
-    const window = e.currentTarget.innerWidth;
-
-    window <= 1200 ? setImagesPerPage(8) : setImagesPerPage(9);
-    window <= 505 && setImageAttributes(false);
-  };
 
   // Images per page
   const perPageImages = images.slice(0, imagesPerPage);
 
-  // console.log(windowWidth);
-  window.addEventListener("resize", handleWindowResize);
-
   // Handling Overlay Modal and Current Image to display
-  const handleImgClick = function (image) {
-    setCurrentImg(image);
+  const handleImgClick = function (imageObj) {
+    setCurrentImg(imageObj);
+    // console.log(imageObj);
     setModalIsOpen(true);
   };
 
-  const imageComponent = perPageImages.map((image, index) => {
+  useEffect(() => {
+    const handleResize = function (e) {
+      const changedWindowSize = e.target.innerWidth;
+
+      setWindowSize(changedWindowSize);
+
+      windowSize >= 700 && windowSize <= 1200
+        ? setImagesPerPage(8)
+        : setImagesPerPage(9);
+
+      if (windowSize <= 705) {
+        setImageAttributes(false);
+      } else {
+        setImageAttributes(true);
+      }
+    };
+
+    // On mount/on Re-render
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      // On unmount
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowSize]);
+
+  const imageComponent = perPageImages.map((imageObj) => {
     return (
-      <div key={index} className="gallery--images">
+      <div key={imageObj.key} className="gallery--images">
         <img
           className="gallery_image"
           effect="blur"
-          src={image}
-          placeholdersrc={image}
+          src={imageObj.image}
+          placeholdersrc={imageObj.image}
           loading="lazy"
-          onClick={() => handleImgClick(image)}
+          onClick={() => handleImgClick(imageObj)}
         />
       </div>
     );
@@ -57,6 +81,8 @@ const Gallery = function () {
           currentImg={currentImg}
           setModalIsOpen={setModalIsOpen}
           imageAttributes={imageAttributes}
+          setCurrentImg={setCurrentImg}
+          perPageImages={perPageImages}
         />
       )}
       <div className="gallery">{imageComponent}</div>
