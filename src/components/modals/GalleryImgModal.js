@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import {
   AiOutlineClose,
@@ -46,7 +46,7 @@ const GalleryImgModal = function (props) {
     // Updating the current image.
     setCurrentImg(
       perPageImages.find((imageObj) => {
-        return imageObj.key === changedIndex;
+        return imageObj.key === changedIndex; // checking index
       })
     );
   };

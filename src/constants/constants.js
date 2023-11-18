@@ -24,7 +24,7 @@ export const navbar = [
 // // Function to get all the images from "assets/galleryImg"
 export const getImages = function () {
   const importAll = (r) =>
-    r.keys().map((key, index) => ({ key: index, image: r(key) }));
+    r.keys().map((image, index) => ({ key: index, image: r(image) }));
   const imagesWithKeys = importAll(
     require.context("../assets/galleryImg", false, /\.(jpg)$/)
   );
