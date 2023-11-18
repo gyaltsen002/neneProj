@@ -1,48 +1,72 @@
 import React, { useState, useEffect } from "react";
-import Footer from "../../build/Footer";
-import GalleryImgModal from "../modals/GalleryImgModal";
-import { getImages, IMAGEPERPAGE } from "../../constants/constants";
-import "./gallery.css";
-
 import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
+import Footer from "../../build/Footer";
+import { GalleryImgModal, Loading, Error } from "../index";
+import {
+  getImages,
+  WINDOWWIDTH,
+  IMAGESPERPAGE,
+} from "../../constants/constants";
+import "./gallery.css";
+
 const Gallery = function () {
-  const images = getImages(); // All Images.
+  // All the images using useEffect
+  const [images, setImages] = useState([]);
+
+  // Error checking
+  const [error, setError] = useState(false);
+
+  // Loading
+  const [loading, setLoading] = useState(true);
+
   // CurrentImage
   const [currentImg, setCurrentImg] = useState(null);
 
   // Modal
-  const [modalIsOpen, setModalIsOpen] = useState(null);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // Images per page
-  const [imagesPerPage, setImagesPerPage] = useState(
-    window.innerWidth >= 700 && window.innerWidth <= 1200 ? 8 : 9
-  );
+  const [imagesPerPage, setImagesPerPage] = useState(IMAGESPERPAGE);
 
   // Window Size
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [windowSize, setWindowSize] = useState(WINDOWWIDTH);
 
   // The right, left and cross buttons attributes in modal
   const [imageAttributes, setImageAttributes] = useState(true);
-
   // Images per page
-  const [perPageImages, setPerPageImages] = useState(
-    images.slice(0, imagesPerPage)
-  );
+  const [slicedImagesPage, setSlicedImagesPage] = useState([]);
 
   // Page is the first or the last page
   const [pageStartEnd, setPageStartEnd] = useState("first");
+
+  useEffect(() => {
+    const getImagesGallery = async function () {
+      try {
+        const images = await getImages();
+        setImages(images);
+        setLoading(false);
+        setSlicedImagesPage(images.slice(0, imagesPerPage));
+
+        // console.log(images.length);
+        if (images.length === 0) throw new Error("No data");
+      } catch (e) {
+        setError(true);
+      }
+    };
+    getImagesGallery();
+  }, []);
 
   // Handling images and btn on btn click
   const handlePageChange = function (direction) {
     const mirrorImage = [...images];
     const startIndex =
       direction === "next" // Next or prev page
-        ? perPageImages[perPageImages.length - 1].key + 1
-        : perPageImages[0].key - imagesPerPage;
+        ? slicedImagesPage[slicedImagesPage.length - 1].key + 1
+        : slicedImagesPage[0].key - imagesPerPage;
 
     const currentPageImages = mirrorImage.splice(startIndex, imagesPerPage);
-    setPerPageImages(currentPageImages);
+    setSlicedImagesPage(currentPageImages);
 
     const keys = currentPageImages.map((imageObj) => imageObj.key);
 
@@ -98,17 +122,21 @@ const Gallery = function () {
     };
   }, [windowSize]);
 
-  const imageComponent = perPageImages.map((imageObj) => {
+  const imageComponent = slicedImagesPage.map((imageObj) => {
     return (
       <div key={imageObj.key} className="gallery--images">
-        <img
-          className="gallery_image"
-          effect="blur"
-          src={imageObj.image}
-          placeholdersrc={imageObj.image}
-          loading="lazy"
-          onClick={() => handleImgClick(imageObj)}
-        />
+        {loading ? (
+          <Loading />
+        ) : (
+          <img
+            className="gallery_image"
+            effect="blur"
+            src={imageObj.image}
+            // placeholderSrc={imageObj.image}
+            // loading="lazy"
+            onClick={() => handleImgClick(imageObj)}
+          />
+        )}
       </div>
     );
   });
@@ -122,32 +150,44 @@ const Gallery = function () {
           imageAttributes={imageAttributes}
           start
           setCurrentImg={setCurrentImg}
-          perPageImages={perPageImages}
+          slicedImagesPage={slicedImagesPage}
         />
       )}
-      <div className="gallery">{imageComponent}</div>
-      <div className="gallery--des--btn">
-        <div onClick={handlePrevPage} className="gallery--attrib gallery--next">
-          {pageStartEnd === "first" ? (
-            <></>
-          ) : (
-            <>
-              <span>Prev</span>
-              <GrLinkPrevious className="gallery--next_btn" />
-            </>
-          )}
-        </div>
-        <div onClick={handleNextPage} className="gallery--attrib gallery--prev">
-          {pageStartEnd === "last" ? (
-            <></>
-          ) : (
-            <>
-              <span>Next</span>
-              <GrLinkNext className="gallery--prev_btn" />
-            </>
-          )}
-        </div>
-      </div>
+      {error ? (
+        <Error />
+      ) : (
+        <>
+          <div className="gallery">{imageComponent}</div>
+          <div className="gallery--des--btn">
+            <div
+              onClick={handlePrevPage}
+              className="gallery--attrib gallery--next"
+            >
+              {pageStartEnd === "first" ? (
+                <></>
+              ) : (
+                <>
+                  <span>Prev</span>
+                  <GrLinkPrevious className="gallery--next_btn" />
+                </>
+              )}
+            </div>
+            <div
+              onClick={handleNextPage}
+              className="gallery--attrib gallery--prev"
+            >
+              {pageStartEnd === "last" ? (
+                <></>
+              ) : (
+                <>
+                  <span>Next</span>
+                  <GrLinkNext className="gallery--prev_btn" />
+                </>
+              )}
+            </div>
+          </div>
+        </>
+      )}
       <Footer />
     </>
   );

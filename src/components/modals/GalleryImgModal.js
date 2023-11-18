@@ -13,7 +13,7 @@ const GalleryImgModal = function (props) {
   const setModalIsOpen = props.setModalIsOpen;
   const imageAttributes = props.imageAttributes;
   const setCurrentImg = props.setCurrentImg;
-  const perPageImages = props.perPageImages;
+  const slicedImagesPage = props.slicedImagesPage;
 
   const closeModal = function () {
     setModalIsOpen(false);
@@ -25,10 +25,12 @@ const GalleryImgModal = function (props) {
     // Reading current index of the image
     let changedIndex = currenIndex; // If anyone has a better option feel free to change it if you wish since let is not that much preferred
 
+    // console.log(slicedImagesPage[0].key);
+    // console.log(slicedImagesPage[slicedImagesPage.length - 1].key);
     // Condition for back
     if (sign === "back") {
-      if (currenIndex === 0) {
-        changedIndex = perPageImages.length - 1;
+      if (currenIndex === slicedImagesPage[0].key) {
+        changedIndex = slicedImagesPage[slicedImagesPage.length - 1].key;
       } else {
         changedIndex = currenIndex - 1;
       }
@@ -36,8 +38,8 @@ const GalleryImgModal = function (props) {
 
     // Condition for next
     if (sign === "next") {
-      if (currenIndex === perPageImages.length - 1) {
-        changedIndex = 0;
+      if (currenIndex === slicedImagesPage[slicedImagesPage.length - 1].key) {
+        changedIndex = slicedImagesPage[0].key;
       } else {
         changedIndex = currenIndex + 1;
       }
@@ -45,7 +47,7 @@ const GalleryImgModal = function (props) {
 
     // Updating the current image.
     setCurrentImg(
-      perPageImages.find((imageObj) => {
+      slicedImagesPage.find((imageObj) => {
         return imageObj.key === changedIndex; // checking index
       })
     );

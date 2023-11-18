@@ -62,3 +62,10 @@
     max-width: 70%;
   }
 }
+
+@media (max-width: 700px) {
+  .gallery {
+    max-width: 450px;
+    min-width: 320px;
+  }
+}

@@ -36,3 +36,9 @@
 .img--modal_arrow_right {
   right: -100px;
 }
+
+@media (max-width: 800px) {
+  .img--modal {
+    min-width: 330px;
+  }
+}

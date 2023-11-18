@@ -25,6 +25,7 @@ export const navbar = [
 export const getImages = function () {
   const importAll = (r) =>
     r.keys().map((image, index) => ({ key: index, image: r(image) }));
+
   const imagesWithKeys = importAll(
     require.context("../assets/galleryImg", false, /\.(jpg)$/)
   );
@@ -32,4 +33,8 @@ export const getImages = function () {
   return imagesWithKeys;
 };
 
-export const IMAGEPERPAGE = 9;
+export const WINDOWWIDTH = window.innerWidth;
+
+export const IMAGESPERPAGE = function () {
+  return WINDOWWIDTH >= 700 && WINDOWWIDTH <= 1200 ? 8 : 9;
+};
