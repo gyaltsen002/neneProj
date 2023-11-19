@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import Footer from "../../build/Footer";
-import GalleryImgsComponent from "./gallery-image-comp/GalleryImageContainer";
-import GalleryImgModal from "../modals/GalleryImgModal";
+import GalleryImgsComponent from "./gallery-image-container/GalleryImageContainer";
+import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
+import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
+import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
+import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
 import { getImages, IMAGEPERPAGE } from "../../constants/constants";
 import "./gallery.css";
-
-import { GrLinkNext, GrLinkPrevious } from "react-icons/gr";
 
 const Gallery = function () {
   const images = getImages(); // All Images.
@@ -102,16 +103,11 @@ const Gallery = function () {
 
   const imageComponent = slicedImagesPage.map((imageObj) => {
     return (
-      <div key={imageObj.key} className="gallery--images">
-        <img
-          className="gallery_image"
-          effect="blur"
-          src={imageObj.image}
-          placeholdersrc={imageObj.image}
-          loading="lazy"
-          onClick={() => handleImgClick(imageObj)}
-        />
-      </div>
+      <GalleryImgEntity
+        key={imageObj.key}
+        imageObj={imageObj}
+        handleImgClick={handleImgClick}
+      />
     );
   });
 
@@ -132,24 +128,10 @@ const Gallery = function () {
 
       <div className="gallery--des--btn">
         <div onClick={handlePrevPage} className="gallery--attrib gallery--next">
-          {pageStartEnd === "first" ? (
-            <></>
-          ) : (
-            <>
-              <span>Prev</span>
-              <GrLinkPrevious className="gallery--next_btn" />
-            </>
-          )}
+          {pageStartEnd === "first" ? <></> : <GalleryPrevBtn />}
         </div>
         <div onClick={handleNextPage} className="gallery--attrib gallery--prev">
-          {pageStartEnd === "last" ? (
-            <></>
-          ) : (
-            <>
-              <span>Next</span>
-              <GrLinkNext className="gallery--prev_btn" />
-            </>
-          )}
+          {pageStartEnd === "last" ? <></> : <GalleryNextBtn />}
         </div>
       </div>
       <Footer />

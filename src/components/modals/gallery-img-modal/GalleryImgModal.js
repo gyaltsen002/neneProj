@@ -54,7 +54,7 @@ const GalleryImgModal = function (props) {
 
   return (
     <>
-      <div className="modal" onClick={closeModal}></div>
+      <div className="modal"></div>
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
         {/* <h1>I'm the modal.</h1> */}
