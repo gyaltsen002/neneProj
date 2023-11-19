@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+
 import Footer from "../../build/Footer";
+import GalleryImgsComponent from "./gallery-image-comp/GalleryImageContainer";
 import GalleryImgModal from "../modals/GalleryImgModal";
 import { getImages, IMAGEPERPAGE } from "../../constants/constants";
 import "./gallery.css";
@@ -125,7 +127,9 @@ const Gallery = function () {
           perPageImages={perPageImages}
         />
       )}
-      <div className="gallery">{imageComponent}</div>
+
+      <GalleryImgsComponent imageComponent={imageComponent} />
+
       <div className="gallery--des--btn">
         <div onClick={handlePrevPage} className="gallery--attrib gallery--next">
           {pageStartEnd === "first" ? (
