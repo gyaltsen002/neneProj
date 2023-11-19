@@ -4,5 +4,5 @@ export { default as About } from "./about/About";
 export { default as Contact } from "./contact/Contact";
 export { default as Price } from "./price/Price";
 export { default as Loading } from "./load/Loading";
-export { default as GalleryImgModal } from "./modals/GalleryImgModal";
+export { default as GalleryImgModal } from "./modals/gallery-img-modal/GalleryImgModal";
 export { default as Error } from "./error/Error";
