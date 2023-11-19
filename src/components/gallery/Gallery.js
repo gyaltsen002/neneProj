@@ -28,7 +28,7 @@ const Gallery = function () {
   const [imageAttributes, setImageAttributes] = useState(true);
 
   // Images per page
-  const [perPageImages, setPerPageImages] = useState(
+  const [slicedImagesPage, setSlicedImagesPage] = useState(
     images.slice(0, imagesPerPage)
   );
 
@@ -40,11 +40,11 @@ const Gallery = function () {
     const mirrorImage = [...images];
     const startIndex =
       direction === "next" // Next or prev page
-        ? perPageImages[perPageImages.length - 1].key + 1
-        : perPageImages[0].key - imagesPerPage;
+        ? slicedImagesPage[slicedImagesPage.length - 1].key + 1
+        : slicedImagesPage[0].key - imagesPerPage;
 
     const currentPageImages = mirrorImage.splice(startIndex, imagesPerPage);
-    setPerPageImages(currentPageImages);
+    setSlicedImagesPage(currentPageImages);
 
     const keys = currentPageImages.map((imageObj) => imageObj.key);
 
@@ -100,7 +100,7 @@ const Gallery = function () {
     };
   }, [windowSize]);
 
-  const imageComponent = perPageImages.map((imageObj) => {
+  const imageComponent = slicedImagesPage.map((imageObj) => {
     return (
       <div key={imageObj.key} className="gallery--images">
         <img
@@ -124,7 +124,7 @@ const Gallery = function () {
           imageAttributes={imageAttributes}
           start
           setCurrentImg={setCurrentImg}
-          perPageImages={perPageImages}
+          slicedImagesPage={slicedImagesPage}
         />
       )}
 
