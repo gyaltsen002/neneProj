@@ -23,6 +23,7 @@ const GalleryImgModal = function (props) {
     const currenIndex = currentImg.key;
 
     // Reading current index of the image
+    // Reading current index of the image
     let changedIndex = currenIndex; // If anyone has a better option feel free to change it if you wish since let is not that much preferred
 
     // Condition for back
@@ -53,7 +54,7 @@ const GalleryImgModal = function (props) {
 
   return (
     <>
-      <div className="modal" onClick={closeModal}></div>
+      <div className="modal"></div>
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
         {/* <h1>I'm the modal.</h1> */}
