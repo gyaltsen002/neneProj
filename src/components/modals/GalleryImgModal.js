@@ -25,8 +25,6 @@ const GalleryImgModal = function (props) {
     // Reading current index of the image
     let changedIndex = currenIndex; // If anyone has a better option feel free to change it if you wish since let is not that much preferred
 
-    // console.log(slicedImagesPage[0].key);
-    // console.log(slicedImagesPage[slicedImagesPage.length - 1].key);
     // Condition for back
     if (sign === "back") {
       if (currenIndex === slicedImagesPage[0].key) {
