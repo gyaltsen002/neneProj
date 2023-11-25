@@ -1,0 +1,21 @@
+.contact {
+  background: url("../../assets/proto/contact.webp");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* width: 70%; */
+  height: 100vh;
+  margin: 0 auto;
+  color: #fe6080;
+}
+
+.contact--form {
+  opacity: 0.8;
+}
+
+.contact--form > form {
+  display: grid;
+  grid-template-columns: 200px 200px;
+}

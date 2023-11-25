@@ -23,7 +23,7 @@ const Header = function () {
       >
         <img className="header--logo" src={logo} />
       </NavLink>
-      {/* The top ones are NavLink from react-router-dom */}
+      {/* The ones above are NavLink from react-router-dom */}
 
       {/* The bottom are Navlinks */}
       <Navbar />

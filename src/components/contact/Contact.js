@@ -1,11 +1,17 @@
 import React from "react";
 import Footer from "../../build/Footer";
 
+import ContactForm from "./contact-form/ContactForm";
+import "./contact.css";
+
 const Contact = function () {
   return (
     <>
       <div className="contact">
-        <h1>I'm contact.</h1>
+        <div className="contact--heading">
+          <h1>Contact</h1>
+        </div>
+        <ContactForm />
       </div>
       <Footer />
     </>
