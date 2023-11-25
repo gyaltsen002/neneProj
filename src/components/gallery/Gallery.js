@@ -6,7 +6,7 @@ import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
-import { getImages, IMAGEPERPAGE } from "../../constants/constants";
+import { getImages, INITIALWINDOWWIDTH } from "../../constants/constants";
 import "./gallery.css";
 
 const Gallery = function () {
@@ -19,11 +19,11 @@ const Gallery = function () {
 
   // Images per page
   const [imagesPerPage, setImagesPerPage] = useState(
-    window.innerWidth >= 700 && window.innerWidth <= 1200 ? 8 : 9
+    INITIALWINDOWWIDTH >= 700 && INITIALWINDOWWIDTH <= 1200 ? 8 : 9
   );
 
   // Window Size
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const [windowSize, setWindowSize] = useState(INITIALWINDOWWIDTH);
 
   // The right, left and cross buttons attributes in modal
   const [imageAttributes, setImageAttributes] = useState(true);

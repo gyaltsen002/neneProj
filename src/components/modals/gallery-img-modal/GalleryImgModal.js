@@ -1,10 +1,8 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import {
-  AiOutlineClose,
-  AiOutlineArrowRight,
-  AiOutlineArrowLeft,
-} from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
+
+import { ImCross } from "react-icons/im";
 
 import "./galleryimgmodal.css";
 
@@ -22,7 +20,6 @@ const GalleryImgModal = function (props) {
   const handleArrow = function (sign) {
     const currenIndex = currentImg.key;
 
-    // Reading current index of the image
     // Reading current index of the image
     let changedIndex = currenIndex; // If anyone has a better option feel free to change it if you wish since let is not that much preferred
 
@@ -60,7 +57,7 @@ const GalleryImgModal = function (props) {
         {/* <h1>I'm the modal.</h1> */}
         {imageAttributes && (
           <>
-            <AiOutlineClose className="modal--close" onClick={closeModal} />
+            <ImCross className="modal--close" onClick={closeModal} />
             <AiOutlineArrowLeft
               onClick={() => handleArrow("back")}
               className="img--modal_arrows img--modal_arrow_left"

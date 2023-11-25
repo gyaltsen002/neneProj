@@ -1,0 +1,140 @@
+.price {
+  font-family: "Cabin Sketch", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: ; */
+  width: 100%;
+  background: rgb(199, 222, 199);
+}
+
+.price--list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+}
+
+.price--list_images {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price--list_image {
+  width: 300px;
+  padding: 0 10px;
+}
+
+.price--quote {
+  display: flex;
+  width: 70vw;
+  margin: 60px 0;
+}
+
+.price--quote_img {
+  object-fit: cover;
+  width: 320px;
+  height: 100%;
+}
+
+.price--quote_form {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  padding: 15px 19px;
+  justify-content: center;
+  width: 70%;
+  background: #fbeee6;
+}
+
+.price--quote_form-last_name {
+  margin-left: 25px;
+}
+
+.price--quote_form-span3 {
+  grid-column: 1/-1;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.price--quote_form-heading {
+  margin-bottom: 15px;
+}
+
+.price--quote_form-heading > label {
+  border-bottom: 2px rgb(156, 150, 150) dashed;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.price--quote_form-heading > label:hover,
+.price--quote_form-submit:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  transition: all 0.2s ease-in;
+}
+
+.price--quote_form-email,
+.price--quote_form-number {
+  display: flex;
+  flex-direction: column;
+}
+
+.price--quote_form-inputs {
+  width: 100%;
+  background: rgb(246, 242, 235);
+  border: 1px solid rgb(201, 200, 200);
+  padding: 9px;
+  font-family: "Cabin Sketch", sans-serif;
+  outline: none;
+  font-size: 17px;
+}
+
+/* .price--quote_form-inputs:valid {
+  border: 2px green solid;
+} */
+
+.price--quote_form-inputs:invalid {
+  border: solid 4px rgb(142, 3, 3);
+}
+
+.price--quote_form-des > textarea {
+  max-width: 100%;
+  height: 20vh;
+}
+
+.error {
+  border: 1.2px solid rgb(238, 37, 37);
+}
+
+.submit--modal {
+  z-index: 2;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: rgba(103, 101, 101, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.modal--message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 42%;
+  left: 50%;
+  z-index: 3;
+}
+
+.modal--message > img {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
+
+.modal--message > h1 {
+  font-weight: 800px;
+}
