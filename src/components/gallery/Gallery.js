@@ -5,16 +5,8 @@ import { GalleryImgModal, Error } from "../index";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
-<<<<<<< HEAD
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
-import {
-  getImages,
-  WINDOWWIDTH,
-  IMAGESPERPAGE,
-} from "../../constants/constants";
-=======
 import { getImages, INITIALWINDOWWIDTH } from "../../constants/constants";
->>>>>>> add-about
 import "./gallery.css";
 
 const Gallery = function () {
@@ -34,19 +26,12 @@ const Gallery = function () {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // Images per page
-<<<<<<< HEAD
-  const [imagesPerPage, setImagesPerPage] = useState(IMAGESPERPAGE);
-
-  // Window Size
-  const [windowSize, setWindowSize] = useState(WINDOWWIDTH);
-=======
   const [imagesPerPage, setImagesPerPage] = useState(
     INITIALWINDOWWIDTH >= 700 && INITIALWINDOWWIDTH <= 1200 ? 8 : 9
   );
 
   // Window Size
   const [windowSize, setWindowSize] = useState(INITIALWINDOWWIDTH);
->>>>>>> add-about
 
   // The right, left and cross buttons attributes in modal
   const [imageAttributes, setImageAttributes] = useState(true);
@@ -71,7 +56,7 @@ const Gallery = function () {
       }
     };
     getImagesGallery();
-  }, []);
+  }, [imagesPerPage]);
 
   // Handling images and btn on btn click
   const handlePageChange = function (direction) {
@@ -144,6 +129,7 @@ const Gallery = function () {
         key={imageObj.key}
         imageObj={imageObj}
         handleImgClick={handleImgClick}
+        loading={loading}
       />
     );
   });

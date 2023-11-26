@@ -5,8 +5,8 @@ import { GrLinkPrevious } from "react-icons/gr";
 const GalleryPrevBtn = function () {
   return (
     <>
-      <span>Prev</span>
       <GrLinkPrevious className="gallery--prev_btn" />
+      <span>Prev</span>
     </>
   );
 };

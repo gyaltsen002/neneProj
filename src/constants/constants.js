@@ -33,13 +33,6 @@ export const getImages = function () {
   return imagesWithKeys;
 };
 
-<<<<<<< HEAD
-export const WINDOWWIDTH = window.innerWidth;
-
-export const IMAGESPERPAGE = function () {
-  return WINDOWWIDTH >= 700 && WINDOWWIDTH <= 1200 ? 8 : 9;
-};
-=======
 // Window width
 export const INITIALWINDOWWIDTH = window.innerWidth;
 
@@ -97,4 +90,3 @@ export const quoteOptions = [
   { id: 4, service: "Location Shoot" },
   { id: 5, service: "Other" },
 ];
->>>>>>> add-about
