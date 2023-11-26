@@ -28,3 +28,5 @@ const AboutSkills = function () {
 };
 
 export default AboutSkills;
+
+console.log("HEy");
