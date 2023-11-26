@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { NavLink } from "react-router-dom";
 
@@ -28,3 +28,5 @@ const AboutSkills = function () {
 };
 
 export default AboutSkills;
+
+console.log("HEy");

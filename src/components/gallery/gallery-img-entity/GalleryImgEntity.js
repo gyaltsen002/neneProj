@@ -14,6 +14,7 @@ const GalleryImgEntity = function (props) {
         className="gallery_image"
         effect="blur"
         src={imageObj.image}
+        alt={imageObj.key}
         placeholdersrc={imageObj.image}
         loading="lazy"
         onClick={() => handleImgClick(imageObj)}
