@@ -6,7 +6,7 @@ import careerImg from "../../../assets/aboutImages/career.webp";
 
 const AboutCareer = function () {
   const { title, body } = aboutCareerConstant;
-  console.log(body);
+
   const careers = body.map((experience) => {
     return (
       <div key={experience.id} className="about--career_exp_elms">

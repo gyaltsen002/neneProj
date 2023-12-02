@@ -1,12 +1,9 @@
 import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const GalleryImgEntity = function (props) {
   const imageObj = props.imageObj;
   const handleImgClick = props.handleImgClick;
-  const loading = props.loading;
-
-  console.log(loading);
+  // const loading = props.loading;
 
   return (
     <div className="gallery--images">

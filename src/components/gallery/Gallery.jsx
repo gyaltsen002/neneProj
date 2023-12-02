@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import Footer from "../Footer/Footer";
-// import GalleryImgsComponent from "./gallery-image-container/GalleryImageContainer";
 import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
-import GalleryNextBtn from "./gallery-prev/GalleryPrevBtn";
+import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
 import { getImages, INITIALWINDOWWIDTH } from "../../assets/constants";
 import "./gallery.css";
 
@@ -14,11 +13,11 @@ const Gallery = function () {
   // All the images using useEffect
   const [images, setImages] = useState([]);
 
-  // Error checking
-  const [error, setError] = useState(false);
+  // // Error checking
+  // const [error, setError] = useState(false);
 
-  // Loading
-  const [loading, setLoading] = useState(true);
+  // // Loading
+  // const [loading, setLoading] = useState(true);
 
   // CurrentImage
   const [currentImg, setCurrentImg] = useState(null);
@@ -47,13 +46,14 @@ const Gallery = function () {
       try {
         const images = await getImages();
         setImages(images);
-        setLoading(false);
+        // setLoading(false);
         setSlicedImagesPage(images.slice(0, imagesPerPage));
 
         // console.log(images.length);
         if (images.length === 0) throw new Error("No data");
       } catch (e) {
-        setError(true);
+        console.log(e);
+        // setError(true);
       }
     };
     getImagesGallery();
@@ -130,7 +130,6 @@ const Gallery = function () {
         key={imageObj.key}
         imageObj={imageObj}
         handleImgClick={handleImgClick}
-        loading={loading}
       />
     );
   });
