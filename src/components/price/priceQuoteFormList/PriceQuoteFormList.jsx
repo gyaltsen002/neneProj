@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { quoteOptions } from "../../../constants/constants";
+import { quoteOptions } from "../../../assets/constants";
 import SubmitMessage from "../../modals/submit-modal/SubmitMessage";
 
 const PriceQuoteFormList = function () {
@@ -66,8 +66,8 @@ const PriceQuoteFormList = function () {
       });
     }
 
-    [...e.target.children].map((child) => {
-      [...child.children].map((child) => {
+    [...e.target.children].forEach((child) => {
+      [...child.children].forEach((child) => {
         //Grand-Children elements
         if (
           (child.nodeName.toLowerCase() === "input" &&
@@ -146,7 +146,7 @@ const PriceQuoteFormList = function () {
             value={userQuoteCred.service}
             name="service"
           >
-            <option>--Select an option--</option>
+            <option>--Select a service--</option>
             {quoteOptions.map((quote) => {
               return <option key={quote.id}>{quote.service}</option>;
             })}

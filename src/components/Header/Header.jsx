@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { Navbar } from "../components/index";
-import logo from "../assets/proto/logo.webp";
+import { Navbar } from "../index";
+import logo from "../../assets/proto/logo.webp";
 import "./header.css";
 
 const Header = function () {
@@ -21,7 +21,7 @@ const Header = function () {
         }
         onClick={() => changeIdentifier("home")}
       >
-        <img className="header--logo" src={logo} />
+        <img alt="header__logo" className="header--logo" src={logo} />
       </NavLink>
       {/* The ones above are NavLink from react-router-dom */}
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { aboutCareerConstant } from "../../../constants/constants";
+import { aboutCareerConstant } from "../../../assets/constants";
 import careerImg from "../../../assets/aboutImages/career.webp";
 
 const AboutCareer = function () {

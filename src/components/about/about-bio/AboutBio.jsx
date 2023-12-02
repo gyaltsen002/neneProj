@@ -1,7 +1,7 @@
 import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { aboutBioConstant } from "../../../constants/constants";
+import { aboutBioConstant } from "../../../assets/constants";
 import bioImage from "../../../assets/aboutImages/bio.webp";
 
 const AboutBio = function () {

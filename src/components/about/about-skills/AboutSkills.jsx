@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import exp1 from "../../../assets/aboutImages/exp1.webp";
 import exp2 from "../../../assets/aboutImages/exp2.webp";
-import { aboutSkillsConstant } from "../../../constants/constants";
+import { aboutSkillsConstant } from "../../../assets/constants";
 
 const AboutSkills = function () {
   return (
