@@ -61,8 +61,8 @@ const ContactForm = function () {
       });
     }
 
-    [...e.target.children].map((child) => {
-      [...child.children].map((child) => {
+    [...e.target.children].forEach((child) => {
+      [...child.children].forEach((child) => {
         //Grand-Children elements
         if (
           (child.nodeName.toLowerCase() === "input" &&
