@@ -1,7 +1,7 @@
 import React from "react";
 
 import { AboutBio, AboutCareer, AboutSkills, AboutNene } from "./index";
-import Footer from "../../build/Footer";
+import Footer from "../Footer/Footer";
 import "./about.css";
 
 const About = function () {

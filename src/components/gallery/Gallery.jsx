@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import Footer from "../../build/Footer";
+import Footer from "../Footer/Footer";
 import GalleryImgsComponent from "./gallery-image-container/GalleryImageContainer";
 import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
-import { getImages, INITIALWINDOWWIDTH } from "../../constants/constants";
+import { getImages, INITIALWINDOWWIDTH } from "../../assets/constants";
 import "./gallery.css";
 
 const Gallery = function () {

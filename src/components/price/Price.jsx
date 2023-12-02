@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from "../../build/Footer";
+import Footer from "../Footer/Footer";
 
 import { PriceList, PriceQuote } from "./index";
 import "./price.css";
