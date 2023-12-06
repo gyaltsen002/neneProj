@@ -21,7 +21,7 @@ const PriceQuoteFormList = function () {
     setTimeout(() => {
       setSubmitMessage(null);
     }, 2200);
-  }, [submitMessage]);
+  }, [submitMessage]); // Timeout for the response message of users submit
 
   // Handling change for the change of input fields.
   const handleChange = function (e) {
@@ -88,12 +88,13 @@ const PriceQuoteFormList = function () {
       {submitMessage && <SubmitMessage message={submitMessage} />}
       <form className="price--quote_form" onSubmit={handleFormSubmit}>
         <div className="price--quote_form-heading price--quote_form-span3">
-          <label>Get a quote. </label>
+          <h2>Get a quote. </h2>
         </div>
 
         <div className="price--quote_form-first_name">
-          <label>First Name</label>
+          <label htmlFor="firstName">First Name</label>
           <input
+            id="firstName"
             onChange={handleChange}
             className="price--quote_form-inputs"
             type="text"
@@ -103,8 +104,9 @@ const PriceQuoteFormList = function () {
           />
         </div>
         <div className="price--quote_form-last_name">
-          <label>Last Name</label>
+          <label htmlFor="lastName">Last Name</label>
           <input
+            id="lastName"
             className="price--quote_form-inputs"
             onChange={handleChange}
             type="text"
@@ -115,20 +117,23 @@ const PriceQuoteFormList = function () {
         </div>
 
         <div className="price--quote_form-email price--quote_form-span3">
-          <label>E-Mail</label>
+          <label htmlFor="email">E-Mail</label>
           <input
+            id="email"
             className="price--quote_form-inputs"
             onChange={handleChange}
             type="email"
             value={userQuoteCred.email}
             name="email"
             placeholder="E-Mail"
+            autoComplete="none"
           />
         </div>
 
         <div className="price--quote_form-number price--quote_form-span3">
-          <label>Number</label>
+          <label htmlFor="number">Number</label>
           <input
+            id="number"
             onChange={handleChange}
             className="price--quote_form-inputs"
             type="text"
@@ -139,8 +144,9 @@ const PriceQuoteFormList = function () {
         </div>
 
         <div className="price--quote_form-services price--quote_form-span3">
-          <label>What service do you seek?</label>
+          <label htmlFor="services">What service do you seek?</label>
           <select
+            id="services"
             onChange={handleChange}
             className="price--quote_form-services-options price--quote_form-inputs"
             value={userQuoteCred.service}
@@ -154,8 +160,9 @@ const PriceQuoteFormList = function () {
         </div>
 
         <div className="price--quote_form-des price--quote_form-span3">
-          <label>Tell us what you need help with? </label>
+          <label htmlFor="description">Tell us what you need help with? </label>
           <textarea
+            id="description"
             onChange={handleChange}
             value={userQuoteCred.messagDescription}
             className="price--quote_form-inputs"
