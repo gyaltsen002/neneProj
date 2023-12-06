@@ -1,5 +1,4 @@
 import React from "react";
-import Footer from "../Footer/Footer";
 
 import ContactForm from "./contact-form/ContactForm";
 import "./contact.css";
@@ -13,7 +12,6 @@ const Contact = function () {
         </div>
         <ContactForm />
       </div>
-      <Footer />
     </>
   );
 };

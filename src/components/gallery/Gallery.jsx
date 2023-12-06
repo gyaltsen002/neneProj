@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createApi } from "unsplash-js";
 
-import Footer from "../Footer/Footer";
 import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
@@ -183,7 +182,6 @@ const Gallery = function () {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

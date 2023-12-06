@@ -6,10 +6,10 @@ import logo from "../../assets/proto/logo.webp";
 import "./header.css";
 
 const Header = function () {
-  const [navIdentifier, setNavIdentifier] = React.useState(null); // To identify Home
+  const [pathIdentifier, setPathIdentifier] = React.useState(null); // To identify Home
 
   const changeIdentifier = function (path) {
-    setNavIdentifier(path);
+    setPathIdentifier(path);
   };
 
   return (
@@ -17,7 +17,7 @@ const Header = function () {
       <NavLink
         to="/"
         className={
-          (navIdentifier === "home" || !navIdentifier) && "header--notactive" // Changing the active effect if it's Home/Root
+          (pathIdentifier === "home" || !pathIdentifier) && "header--notactive" // Changing the active effect if it's Home/Root
         }
         onClick={() => changeIdentifier("home")}
       >
