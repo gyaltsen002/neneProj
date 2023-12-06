@@ -22,6 +22,7 @@ export const navbar = [
 ];
 
 // // Function to get all the images from "assets/galleryImg"
+<<<<<<< HEAD
 export const getImages = function () {
   const importAll = (r) =>
     r.keys().map((image, index) => ({ key: index, image: r(image) }));
@@ -29,9 +30,17 @@ export const getImages = function () {
   const imagesWithKeys = importAll(
     require.context("../assets/galleryImg", false, /\.(jpg)$/)
   );
+=======
+// export const getImages = function () {
+//   const importAll = (r) =>
+//     r.keys().map((image, index) => ({ key: index, image: r(image) }));
+//   const imagesWithKeys = importAll(
+//     require.context("../assets/galleryImg", false, /\.(jpg)$/)
+//   );
+>>>>>>> add-about
 
-  return imagesWithKeys;
-};
+//   return imagesWithKeys;
+// };
 
 // Window width
 export const INITIALWINDOWWIDTH = window.innerWidth;

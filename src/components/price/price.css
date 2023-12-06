@@ -59,19 +59,19 @@
 }
 
 .price--quote_form-heading {
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
-.price--quote_form-heading > label {
+.price--quote_form-heading > h2 {
+  width: 35%;
   border-bottom: 2px rgb(156, 150, 150) dashed;
   font-size: 23px;
   font-weight: bold;
 }
 
-.price--quote_form-heading > label:hover,
+.price--quote_form-heading > h2:hover,
 .price--quote_form-submit:hover {
   cursor: pointer;
-  transform: scale(1.01);
   transition: all 0.2s ease-in;
 }
 
