@@ -6,6 +6,7 @@ import "./main.css";
 const Main = function () {
   return (
     <div className="main">
+      Hello how are you
       <img alt="head_img" className="main--img" src={login} />
     </div>
   );

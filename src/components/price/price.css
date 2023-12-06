@@ -96,7 +96,7 @@
 } */
 
 .price--quote_form-inputs:invalid {
-  border: solid 4px rgb(142, 3, 3);
+  border: solid 1.2px rgb(238, 37, 37);
 }
 
 .price--quote_form-des > textarea {
