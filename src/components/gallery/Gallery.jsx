@@ -6,33 +6,12 @@ import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
-<<<<<<< HEAD
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
-import { getImages, INITIALWINDOWWIDTH } from "../../assets/constants";
-import "./gallery.css";
-
-const Gallery = function () {
-  // All the images using useEffect
-  const [images, setImages] = useState([]);
-
-  // // Error checking
-  // const [error, setError] = useState(false);
-
-  // // Loading
-  // const [loading, setLoading] = useState(true);
-
-  // CurrentImage
-  const [currentImg, setCurrentImg] = useState(null);
-
-  // Modal
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-=======
 import { INITIALWINDOWWIDTH } from "../../assets/constants";
 import "./gallery.css";
 
 const Gallery = function () {
   const [images, setImages] = useState(null);
->>>>>>> add-about
 
   // Images per page
   const [imagesPerPage, setImagesPerPage] = useState(
@@ -87,34 +66,12 @@ const Gallery = function () {
   // The right, left and cross buttons attributes in modal
   const [imageAttributes, setImageAttributes] = useState(true);
   // Images per page
-<<<<<<< HEAD
-  const [slicedImagesPage, setSlicedImagesPage] = useState([]);
-=======
   const [slicedImagesPage, setSlicedImagesPage] = useState(
     images?.slice(0, imagesPerPage)
   );
->>>>>>> add-about
 
   // Page is the first or the last page
   const [pageStartEnd, setPageStartEnd] = useState("first");
-
-  useEffect(() => {
-    const getImagesGallery = async function () {
-      try {
-        const images = await getImages();
-        setImages(images);
-        // setLoading(false);
-        setSlicedImagesPage(images.slice(0, imagesPerPage));
-
-        // console.log(images.length);
-        if (images.length === 0) throw new Error("No data");
-      } catch (e) {
-        console.log(e);
-        // setError(true);
-      }
-    };
-    getImagesGallery();
-  }, [imagesPerPage]);
 
   // Handling images and btn on btn click
   const handlePageChange = function (direction) {

@@ -111,11 +111,6 @@
   border-bottom: 1px dashed rgb(118, 104, 104);
 }
 
-.about--career_exp_elms > p:hover,
-.about--career_exp_elms > h2:hover {
-  cursor: pointer;
-}
-
 .about--career_des_headings {
   background-image: linear-gradient(to left, #553c9a, #b393d3);
   color: transparent;
