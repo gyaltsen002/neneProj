@@ -6,16 +6,15 @@ import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
-import { INITIALWINDOWWIDTH } from "../../assets/constants";
+
+import useWindowSize from "../../custom-hooks/useWindowSize";
+
 import "./gallery.css";
 
 const Gallery = function () {
   const [images, setImages] = useState(null);
 
-  // Images per page
-  const [imagesPerPage, setImagesPerPage] = useState(
-    INITIALWINDOWWIDTH >= 700 && INITIALWINDOWWIDTH <= 1200 ? 8 : 9
-  );
+  const { imagesPerPage, imageAttributes } = useWindowSize();
 
   useEffect(() => {
     const api = createApi({
@@ -59,11 +58,6 @@ const Gallery = function () {
   // Modal
   const [modalIsOpen, setModalIsOpen] = useState(null);
 
-  // Window Size
-  const [windowSize, setWindowSize] = useState(INITIALWINDOWWIDTH);
-
-  // The right, left and cross buttons attributes in modal
-  const [imageAttributes, setImageAttributes] = useState(true);
   // Images per page
   const [slicedImagesPage, setSlicedImagesPage] = useState(
     images?.slice(0, imagesPerPage)
@@ -107,35 +101,34 @@ const Gallery = function () {
   // Handling Overlay Modal and Current Image to display
   const handleImgClick = function (imageObj) {
     setCurrentImg(imageObj);
-    // console.log(imageObj);
     setModalIsOpen(true);
   };
 
-  useEffect(() => {
-    const handleResize = function (e) {
-      const changedWindowSize = e.target.innerWidth;
+  // useEffect(() => {
+  //   const handleResize = function (e) {
+  //     const changedWindowSize = e.target.innerWidth;
 
-      setWindowSize(changedWindowSize);
+  //     setWindowSize(changedWindowSize);
 
-      windowSize >= 700 && windowSize <= 1200
-        ? setImagesPerPage(8)
-        : setImagesPerPage(9);
+  //     windowSize >= 700 && windowSize <= 1200
+  //       ? setImagesPerPage(8)
+  //       : setImagesPerPage(9);
 
-      if (windowSize <= 705) {
-        setImageAttributes(false);
-      } else {
-        setImageAttributes(true);
-      }
-    };
+  //     if (windowSize <= 705) {
+  //       setImageAttributes(false);
+  //     } else {
+  //       setImageAttributes(true);
+  //     }
+  //   };
 
-    // On <Gallery /> mount/on Re-render
-    window.addEventListener("resize", handleResize);
+  //   // On <Gallery /> mount/on Re-render
+  //   window.addEventListener("resize", handleResize);
 
-    return () => {
-      // On <Gallery /> unmount
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [windowSize]);
+  //   return () => {
+  //     // On <Gallery /> unmount
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [windowSize, imagesPerPage]);
 
   const imageComponent = slicedImagesPage?.map((imageObj) => {
     return (
@@ -154,7 +147,6 @@ const Gallery = function () {
           currentImg={currentImg}
           setModalIsOpen={setModalIsOpen}
           imageAttributes={imageAttributes}
-          start
           setCurrentImg={setCurrentImg}
           slicedImagesPage={slicedImagesPage}
         />

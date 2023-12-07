@@ -1,7 +1,7 @@
 import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Layout from "./Layout.jsx";
+import Layout from "./components/root-layout/Layout.jsx";
 import { Main, About, Contact, Price, Gallery } from "./components/index.js";
 import Root from "./Root.js";
 import "./app.css";

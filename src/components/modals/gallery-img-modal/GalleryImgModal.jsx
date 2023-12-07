@@ -3,6 +3,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 
 import { ImCross } from "react-icons/im";
+import Backdrop from "../backdrop/Backdrop";
 
 import "./galleryimgmodal.css";
 
@@ -51,7 +52,7 @@ const GalleryImgModal = function (props) {
 
   return (
     <>
-      <div className="modal"></div>
+      <Backdrop styleClass="modal" />
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
         {/* <h1>I'm the modal.</h1> */}
