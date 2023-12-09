@@ -18,23 +18,23 @@
   height: 25px;
   position: absolute;
   top: 0;
-  right: -30px;
+  right: -1.8rem;
 }
 
 .img--modal_arrows {
   position: fixed;
-  margin: 10px;
+  margin: 0.6rem;
   width: 50px;
   height: 50px;
   top: 50%;
 }
 
 .img--modal_arrow_left {
-  left: -190px;
+  left: -11.8rem;
 }
 
 .img--modal_arrow_right {
-  right: -190px;
+  right: -11.8rem;
 }
 
 @media (max-width: 800px) {

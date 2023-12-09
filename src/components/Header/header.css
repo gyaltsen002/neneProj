@@ -5,7 +5,7 @@
   /* background-color: red; */
   margin: 0 auto;
   padding: 0;
-  border-bottom: 2px solid rgb(244, 243, 243);
+  border-bottom: 0.12rem solid rgb(244, 243, 243);
   border-bottom-style: outset;
 }
 

@@ -27,10 +27,10 @@
 
 .about--nene_heading {
   position: absolute;
-  bottom: 40px;
-  right: -20px;
+  bottom: 2.5rem;
+  right: -1.25rem;
   color: rgb(182, 67, 67);
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .about--nene_imgs:hover,
@@ -41,34 +41,34 @@
 .about--bio {
   /* background: red; */
   width: 100%;
-  min-width: 600px;
+  min-width: 37.5rem;
   display: flex;
   align-items: center;
   position: relative;
   left: 0px; /* stick it wherever it was positioned by default */
   top: 0px;
-  margin: 50px 0;
+  margin: 3.12rem 0;
 }
 
 .about--bio_img {
   width: 70%;
-  max-width: 300px;
-  padding: 10px;
+  max-width: 18.75rem;
+  padding: 0.6rem;
 }
 
 .about--bio_heading {
   position: absolute;
   top: 13%;
-  left: 420px;
+  left: 26.25rem;
 }
 
 .about--bio_body {
   position: relative;
-  right: -60px;
+  right: -3.75rem;
   /* bottom: 50px; */
-  width: 800px;
-  min-width: 230px;
-  padding: 30px;
+  width: 50rem;
+  min-width: 14.37rem;
+  padding: 1.87rem;
   background: #ff7575;
   font-weight: bold;
   text-align: end;
@@ -76,7 +76,7 @@
 
 .about--career {
   width: 75vw;
-  margin: 20px 0;
+  margin: 1.25rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,7 +85,7 @@
 .about--career_des {
   width: 40%;
   height: 100%;
-  margin-left: 50px;
+  margin-left: 3.12rem;
 }
 
 .about--career_des_headings {
@@ -96,7 +96,7 @@
   width: 100%;
   height: 100%;
   /* background-color: #ca6287; */
-  padding: 15px;
+  padding: 0.9rem;
   text-align: center;
 }
 
@@ -107,7 +107,7 @@
 
 .about--career_exp_elms > p {
   /* text-decoration: underline; */
-  margin: 0 10px;
+  margin: 0 0.6rem;
 }
 
 .about--career_exp_elms > h2 {
@@ -123,7 +123,7 @@
 }
 
 .about--career_img {
-  width: 370px;
+  width: 23.12rem;
 }
 
 .about--skills {
@@ -131,7 +131,7 @@
   grid-template-columns: 40% 40%;
   grid-gap: 3px;
   width: 80vw;
-  margin: 10px auto;
+  margin: 0.6rem auto;
   align-items: center;
   justify-content: center;
   /* align-content: center; */
@@ -146,7 +146,7 @@
   justify-content: center; */
   text-align: left;
   justify-content: space-around;
-  margin-top: 100px;
+  margin-top: 6.25rem;
 }
 
 .about--skills__content {
@@ -161,7 +161,7 @@
   /* grid-area: "secondImage"; */
   grid-row: 2/3;
   grid-column: 2/3;
-  margin-left: 40px;
+  margin-left: 2.5rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -177,13 +177,13 @@
 }
 
 .about--skills__content > p {
-  padding: 40px 9px;
+  padding: 2.5rem 0.5rem;
   background-color: #c9c9e4;
   color: white;
 }
 
 .about--skills__content > a {
-  padding: 10px;
+  padding: 0.6rem;
   background-color: #8c8adb;
   color: rgb(231, 231, 231);
   text-decoration: none;
@@ -237,6 +237,6 @@
   }
 
   .about--skills__content {
-    margin-bottom: 10px;
+    margin-bottom: 0.6rem;
   }
 }
