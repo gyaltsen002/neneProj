@@ -91,7 +91,7 @@ const PriceQuoteFormList = function () {
           <h2>Get a quote. </h2>
         </div>
 
-        <div className="price--quote_form-first_name">
+        <div className="price--quote_form-first_name price--quote_form-el">
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
@@ -103,7 +103,7 @@ const PriceQuoteFormList = function () {
             placeholder="First Name"
           />
         </div>
-        <div className="price--quote_form-last_name">
+        <div className="price--quote_form-last_name price--quote_form-el">
           <label htmlFor="lastName">Last Name</label>
           <input
             id="lastName"
@@ -116,7 +116,7 @@ const PriceQuoteFormList = function () {
           />
         </div>
 
-        <div className="price--quote_form-email price--quote_form-span3">
+        <div className="price--quote_form-email price--quote_form-el price--quote_form-span3">
           <label htmlFor="email">E-Mail</label>
           <input
             id="email"
@@ -130,7 +130,7 @@ const PriceQuoteFormList = function () {
           />
         </div>
 
-        <div className="price--quote_form-number price--quote_form-span3">
+        <div className="price--quote_form-number price--quote_form-el price--quote_form-span3">
           <label htmlFor="number">Number</label>
           <input
             id="number"
@@ -143,7 +143,7 @@ const PriceQuoteFormList = function () {
           />
         </div>
 
-        <div className="price--quote_form-services price--quote_form-span3">
+        <div className="price--quote_form-services price--quote_form-el price--quote_form-span3">
           <label htmlFor="services">What service do you seek?</label>
           <select
             id="services"
@@ -159,7 +159,7 @@ const PriceQuoteFormList = function () {
           </select>
         </div>
 
-        <div className="price--quote_form-des price--quote_form-span3">
+        <div className="price--quote_form-des price--quote_form-el price--quote_form-span3">
           <label htmlFor="description">Tell us what you need help with? </label>
           <textarea
             id="description"
@@ -171,7 +171,7 @@ const PriceQuoteFormList = function () {
           />
         </div>
 
-        <div className="price--quote_form-submit price--quote_form-span3">
+        <div className="price--quote_form-submit price--quote_form-el price--quote_form-span3">
           <input
             type="submit"
             className="price--quote_form-inputs price--quote_form-submit"

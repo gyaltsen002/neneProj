@@ -11,7 +11,11 @@ const AboutNene = function () {
     <div className="about--nene">
       {bioNeneImages.map((img, index) => {
         return (
-          <LazyLoadImage className="about--nene_imgs" key={index} src={img} />
+          <LazyLoadImage
+            className={`about--nene_imgs about--nene_imgs${index}`}
+            key={index}
+            src={img}
+          />
         );
       })}
       <h1 className="about--nene_heading">About Nene</h1>

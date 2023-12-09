@@ -138,3 +138,69 @@
 .modal--message > h1 {
   font-weight: 800px;
 }
+
+@media (max-width: 1160px) {
+  .price--list_images {
+    display: block;
+    max-width: 450px;
+  }
+
+  .price--list_image {
+    width: 100%;
+  }
+
+  .price--quote_img-container {
+    display: none;
+  }
+  .price--quote_form {
+    margin: 0 auto;
+  }
+
+  .price--quote {
+    width: 100vw;
+  }
+
+  .price--quote_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .price--quote_form-inputs {
+    width: 70%;
+  }
+
+  .price--quote_form-first_name,
+  .price--quote_form-last_name {
+    width: 70%;
+    margin-top: 0.8rem;
+  }
+
+  .price--quote_form-first_name > input,
+  .price--quote_form-last_name > input {
+    width: 100%;
+  }
+
+  .price--quote_form-last_name {
+    margin-left: 0;
+  }
+
+  .price--quote_form-span3 {
+    width: 70%;
+  }
+
+  .price--quote_form-inputs {
+    width: 100%;
+    min-width: 9rem;
+  }
+
+  .price--quote_form-el {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price--quote_form-heading > h2 {
+    width: 90%;
+  }
+}
