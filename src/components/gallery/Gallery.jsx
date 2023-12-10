@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { createApi } from "unsplash-js";
+import React, { useState, useCallback } from "react";
 
 import GalleryImgModal from "../modals/gallery-img-modal/GalleryImgModal";
 import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
@@ -8,49 +7,20 @@ import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
 
 import useWindowSize from "../../custom-hooks/useWindowSize";
+import useApiFetch from "../../custom-hooks/useApiFetch";
 
 import "./gallery.css";
 
 const Gallery = function () {
-  const [images, setImages] = useState(null);
-
   const { imagesPerPage, imageAttributes } = useWindowSize();
 
-  useEffect(() => {
-    const api = createApi({
-      // Don't forget to set your access token here!
-      token: "536087",
-      // See https://unsplash.com/developers
-      accessKey: "ca9VJj9rFoS3hgMhPiC84qzc_FCLf4VhAo9HhK2QeGI",
-    });
+  const [isPending, setIsPending] = useState(true);
 
-    const foreignApiImageReq = async function () {
-      try {
-        const response = await api.search.getPhotos({
-          query: "dog", // Green dog query images && NO search query yet
-          page: 1,
-          perPage: 10,
-          color: "green",
-          // orientation: "portrait",
-        });
-        const result = response.response.results;
-
-        const copyResult = result.map((unpslashImageObj, index) => {
-          return {
-            key: index,
-            image: unpslashImageObj.urls.raw, //unsplash GET image url
-          };
-        });
-
-        setImages(copyResult);
-        setSlicedImagesPage(copyResult.slice(0, imagesPerPage));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    foreignApiImageReq();
-  }, [imagesPerPage]);
+  const { apiImage, slicedApiImage, setSlicedApiImage } = useApiFetch(
+    imagesPerPage,
+    setIsPending
+  );
+  // setIsPending
 
   // CurrentImage
   const [currentImg, setCurrentImg] = useState(null);
@@ -58,84 +28,60 @@ const Gallery = function () {
   // Modal
   const [modalIsOpen, setModalIsOpen] = useState(null);
 
-  // Images per page
-  const [slicedImagesPage, setSlicedImagesPage] = useState(
-    images?.slice(0, imagesPerPage)
-  );
-
   // Page is the first or the last page
   const [pageStartEnd, setPageStartEnd] = useState("first");
 
   // Handling images and btn on btn click
-  const handlePageChange = function (direction) {
-    const mirrorImage = [...images];
-    const startIndex =
-      direction === "next" // Next or prev page
-        ? slicedImagesPage[slicedImagesPage.length - 1].key + 1
-        : slicedImagesPage[0].key - imagesPerPage;
+  const handlePageChange = useCallback(
+    (direction) => {
+      const mirrorImage = [...apiImage];
+      const startIndex =
+        direction === "next" // Next or prev page
+          ? slicedApiImage[slicedApiImage.length - 1].key + 1
+          : slicedApiImage[0].key - imagesPerPage;
 
-    const currentPageImages = mirrorImage?.splice(startIndex, imagesPerPage);
-    setSlicedImagesPage(currentPageImages);
+      const currentPageImages = mirrorImage?.splice(startIndex, imagesPerPage);
+      setSlicedApiImage(currentPageImages);
 
-    const keys = currentPageImages.map((imageObj) => imageObj.key);
+      const keys = currentPageImages.map((imageObj) => imageObj.key);
 
-    setPageStartEnd(
-      keys.includes(0)
-        ? "first"
-        : keys.includes(images[images.length - 1].key)
-        ? "last"
-        : "mid"
-    );
-  };
+      setPageStartEnd(
+        keys.includes(0)
+          ? "first"
+          : keys.includes(apiImage[apiImage.length - 1].key)
+          ? "last"
+          : "mid"
+      );
+    },
+    [apiImage, imagesPerPage, setSlicedApiImage, slicedApiImage]
+  );
 
   // Handle Next page
-  const handleNextPage = function () {
+  const handleNextPage = useCallback(() => {
     handlePageChange("next");
-  };
+  }, [handlePageChange]);
 
   // Handle Prev Page
-  const handlePrevPage = function () {
+  const handlePrevPage = useCallback(() => {
     handlePageChange("prev");
-  };
+  }, [handlePageChange]);
 
   // Handling Overlay Modal and Current Image to display
-  const handleImgClick = function (imageObj) {
-    setCurrentImg(imageObj);
-    setModalIsOpen(true);
-  };
+  const handleImgClick = useCallback(
+    (imageObj) => {
+      setCurrentImg(imageObj);
+      setModalIsOpen(true);
+    },
+    [setCurrentImg, setModalIsOpen]
+  );
 
-  // useEffect(() => {
-  //   const handleResize = function (e) {
-  //     const changedWindowSize = e.target.innerWidth;
-
-  //     setWindowSize(changedWindowSize);
-
-  //     windowSize >= 700 && windowSize <= 1200
-  //       ? setImagesPerPage(8)
-  //       : setImagesPerPage(9);
-
-  //     if (windowSize <= 705) {
-  //       setImageAttributes(false);
-  //     } else {
-  //       setImageAttributes(true);
-  //     }
-  //   };
-
-  //   // On <Gallery /> mount/on Re-render
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     // On <Gallery /> unmount
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, [windowSize, imagesPerPage]);
-
-  const imageComponent = slicedImagesPage?.map((imageObj) => {
+  const imageComponent = slicedApiImage?.map((imageObj) => {
     return (
       <GalleryImgEntity
         key={imageObj.key}
         imageObj={imageObj}
         handleImgClick={handleImgClick}
+        isPending={isPending}
       />
     );
   });
@@ -148,17 +94,21 @@ const Gallery = function () {
           setModalIsOpen={setModalIsOpen}
           imageAttributes={imageAttributes}
           setCurrentImg={setCurrentImg}
-          slicedImagesPage={slicedImagesPage}
+          slicedApiImage={slicedApiImage}
         />
       )}
 
-      <GalleryImgsContainer imageComponent={imageComponent} />
+      <GalleryImgsContainer
+        imageComponent={imageComponent}
+        imagesPerPage={imagesPerPage}
+        isPending={isPending}
+      />
 
       <div className="gallery--des--btn">
         <div onClick={handlePrevPage} className="gallery--attrib gallery--next">
           {pageStartEnd === "first" ||
-          images?.length < imagesPerPage ||
-          !images ? (
+          apiImage?.length < imagesPerPage ||
+          !apiImage ? (
             <></>
           ) : (
             <GalleryPrevBtn />
@@ -166,8 +116,8 @@ const Gallery = function () {
         </div>
         <div onClick={handleNextPage} className="gallery--attrib gallery--prev">
           {pageStartEnd === "last" ||
-          images?.length < imagesPerPage ||
-          !images ? (
+          apiImage?.length < imagesPerPage ||
+          !apiImage ? (
             <></>
           ) : (
             <GalleryNextBtn />

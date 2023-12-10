@@ -3,7 +3,8 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 
 import { ImCross } from "react-icons/im";
-import Backdrop from "../backdrop/Backdrop";
+import Backdrop from "../../modals/backdrop/Backdrop";
+import useWindowSize from "../../../custom-hooks/useWindowSize";
 
 import "./galleryimgmodal.css";
 
@@ -12,7 +13,8 @@ const GalleryImgModal = function (props) {
   const setModalIsOpen = props.setModalIsOpen;
   const imageAttributes = props.imageAttributes;
   const setCurrentImg = props.setCurrentImg;
-  const slicedImagesPage = props.slicedImagesPage;
+  const slicedApiImage = props.slicedApiImage;
+  const { windowSize } = useWindowSize();
 
   const closeModal = function () {
     setModalIsOpen(false);
@@ -26,8 +28,8 @@ const GalleryImgModal = function (props) {
 
     // Condition for back
     if (sign === "back") {
-      if (currenIndex === slicedImagesPage[0].key) {
-        changedIndex = slicedImagesPage[slicedImagesPage.length - 1].key;
+      if (currenIndex === slicedApiImage[0].key) {
+        changedIndex = slicedApiImage[slicedApiImage.length - 1].key;
       } else {
         changedIndex = currenIndex - 1;
       }
@@ -35,8 +37,8 @@ const GalleryImgModal = function (props) {
 
     // Condition for next
     if (sign === "next") {
-      if (currenIndex === slicedImagesPage[slicedImagesPage.length - 1].key) {
-        changedIndex = slicedImagesPage[0].key;
+      if (currenIndex === slicedApiImage[slicedApiImage.length - 1].key) {
+        changedIndex = slicedApiImage[0].key;
       } else {
         changedIndex = currenIndex + 1;
       }
@@ -44,7 +46,7 @@ const GalleryImgModal = function (props) {
 
     // Updating the current image.
     setCurrentImg(
-      slicedImagesPage.find((imageObj) => {
+      slicedApiImage.find((imageObj) => {
         return imageObj.key === changedIndex; // checking index
       })
     );
@@ -52,21 +54,25 @@ const GalleryImgModal = function (props) {
 
   return (
     <>
-      <Backdrop styleClass="modal" />
+      <Backdrop styleClass="modal" handleModalClose={closeModal} />
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
         {/* <h1>I'm the modal.</h1> */}
         {imageAttributes && (
           <>
             <ImCross className="modal--close" onClick={closeModal} />
-            <AiOutlineArrowLeft
-              onClick={() => handleArrow("back")}
-              className="img--modal_arrows img--modal_arrow_left"
-            />
-            <AiOutlineArrowRight
-              onClick={() => handleArrow("next")}
-              className="img--modal_arrows img--modal_arrow_right"
-            />
+            {windowSize >= 860 && (
+              <AiOutlineArrowLeft
+                onClick={() => handleArrow("back")}
+                className="img--modal_arrows img--modal_arrow_left"
+              />
+            )}
+            {windowSize >= 860 && (
+              <AiOutlineArrowRight
+                onClick={() => handleArrow("next")}
+                className="img--modal_arrows img--modal_arrow_right"
+              />
+            )}
           </>
         )}
       </div>
