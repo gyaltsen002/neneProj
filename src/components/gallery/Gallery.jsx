@@ -20,7 +20,6 @@ const Gallery = function () {
     imagesPerPage,
     setIsPending
   );
-  // setIsPending
 
   // CurrentImage
   const [currentImg, setCurrentImg] = useState(null);

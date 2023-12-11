@@ -9,7 +9,7 @@ const GalleryImgEntity = React.memo(({ imageObj, handleImgClick }) => {
         className="gallery_image"
         effect="blur"
         src={imageObj.image}
-        alt={imageObj.key}
+        alt={imageObj.description}
         placeholdersrc={imageObj.image}
         loading="lazy"
         onClick={() => handleImgClick(imageObj)}

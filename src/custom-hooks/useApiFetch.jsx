@@ -49,7 +49,7 @@ const useApiFetch = function (imagesPerPage, setIsPending) {
     unsplashApiImageReq();
   }, [imagesPerPage, setIsPending]);
 
-  return { apiImage, slicedApiImage, error };
+  return { apiImage, slicedApiImage, setSlicedApiImage, error };
 };
 
 export default useApiFetch;

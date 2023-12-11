@@ -12,7 +12,9 @@ const useWindowSize = function () {
   );
 
   // The right, left and cross buttons attributes in modal
-  const [imageAttributes, setImageAttributes] = useState(true);
+  const [imageAttributes, setImageAttributes] = useState(
+    INITIALWINDOWWIDTH > 860 ? true : false
+  );
 
   useEffect(() => {
     const handleResize = function (e) {
@@ -24,7 +26,7 @@ const useWindowSize = function () {
         ? setImagesPerPage(8)
         : setImagesPerPage(9);
 
-      if (windowSize <= 705) {
+      if (windowSize < 860) {
         setImageAttributes(false);
       } else {
         setImageAttributes(true);

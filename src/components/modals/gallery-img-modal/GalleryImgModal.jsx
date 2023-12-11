@@ -4,17 +4,14 @@ import { AiOutlineArrowRight, AiOutlineArrowLeft } from "react-icons/ai";
 
 import { ImCross } from "react-icons/im";
 import Backdrop from "../../modals/backdrop/Backdrop";
-import useWindowSize from "../../../custom-hooks/useWindowSize";
 
 import "./galleryimgmodal.css";
 
 const GalleryImgModal = function (props) {
   const currentImg = props.currentImg;
   const setModalIsOpen = props.setModalIsOpen;
-  const imageAttributes = props.imageAttributes;
   const setCurrentImg = props.setCurrentImg;
   const slicedApiImage = props.slicedApiImage;
-  const { windowSize } = useWindowSize();
 
   const closeModal = function () {
     setModalIsOpen(false);
@@ -57,24 +54,27 @@ const GalleryImgModal = function (props) {
       <Backdrop styleClass="modal" handleModalClose={closeModal} />
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
+        {/* <div className="gallery--images_des">
+          <h3>{currentImg.date}</h3>
+          <p>
+            {`${currentImg.description[0].toUpperCase()}${currentImg.description.slice(
+              1,
+              -1
+            )}.`}
+          </p>
+        </div> */}
         {/* <h1>I'm the modal.</h1> */}
-        {imageAttributes && (
-          <>
-            <ImCross className="modal--close" onClick={closeModal} />
-            {windowSize >= 860 && (
-              <AiOutlineArrowLeft
-                onClick={() => handleArrow("back")}
-                className="img--modal_arrows img--modal_arrow_left"
-              />
-            )}
-            {windowSize >= 860 && (
-              <AiOutlineArrowRight
-                onClick={() => handleArrow("next")}
-                className="img--modal_arrows img--modal_arrow_right"
-              />
-            )}
-          </>
-        )}
+        <>
+          <ImCross className="modal--close" onClick={closeModal} />
+          <AiOutlineArrowLeft
+            onClick={() => handleArrow("back")}
+            className="img--modal_arrows img--modal_arrow_left"
+          />
+          <AiOutlineArrowRight
+            onClick={() => handleArrow("next")}
+            className="img--modal_arrows img--modal_arrow_right"
+          />
+        </>
       </div>
     </>
   );

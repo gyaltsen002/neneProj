@@ -42,3 +42,17 @@
     min-width: 330px;
   }
 }
+
+@media (max-width: 860px) {
+  .img--modal_arrows {
+    top: 100%;
+  }
+
+  .img--modal_arrow_left {
+    left: 0;
+  }
+
+  .img--modal_arrow_right {
+    right: 0;
+  }
+}
