@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import exp1 from "../../../assets/aboutImages/exp1.webp";
 import exp2 from "../../../assets/aboutImages/exp2.webp";
-import { aboutSkillsConstant } from "../../../assets/constants";
+import { aboutSkillsConstant, scrollToTop } from "../../../assets/constants";
 
 const AboutSkills = function () {
   return (
@@ -16,7 +16,7 @@ const AboutSkills = function () {
       </div>
       <div className="about--skills__content">
         <p>{aboutSkillsConstant.skill}</p>
-        <NavLink to="/gallery" href="#top">
+        <NavLink to="/gallery" onClick={scrollToTop}>
           See Gallery
         </NavLink>
       </div>

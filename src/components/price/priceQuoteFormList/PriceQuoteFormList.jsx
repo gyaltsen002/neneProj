@@ -1,92 +1,47 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { quoteOptions } from "../../../assets/constants";
 import SubmitMessage from "../../modals/submit-modal/SubmitMessage";
+import handleFormSubmit from "../../../helpers/handleFormSubmit";
+import handleFormInputChange from "../../../helpers/handleFormInputChange";
+
+import useTimeOut from "../../../custom-hooks/useTimeOut";
 
 const PriceQuoteFormList = function () {
-  // User credentials for the form
-  const [userQuoteCred, setUserQuoteCred] = useState({
+  const defaultUserFormValues = {
     firstName: "",
     lastName: "",
     email: "",
     number: "",
     service: "",
     messagDescription: "",
-  });
+  };
+
+  // User credentials for the form
+  const [userQuoteCred, setUserQuoteCred] = useState(defaultUserFormValues);
 
   // Submit Message to the user
   const [submitMessage, setSubmitMessage] = useState(null);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setSubmitMessage(null);
-    }, 2200);
-  }, [submitMessage]); // Timeout for the response message of users submit
-
-  // Handling change for the change of input fields.
-  const handleChange = function (e) {
-    const { name, value } = e.target;
-
-    setUserQuoteCred((prevUserQuoteCred) => {
-      return {
-        ...prevUserQuoteCred,
-        [name]: value,
-      };
-    });
-    e.target.classList.remove("error");
-  };
-
-  // Handling submit
-  const handleFormSubmit = function (e) {
-    e.preventDefault();
-
-    const error = Object.values(userQuoteCred)
-      .map((userQuote) => {
-        if (userQuote === "") {
-          return false;
-        } else {
-          return true;
-        }
-      })
-      .includes(false);
-
-    if (error) {
-      setSubmitMessage("error");
-    } else {
-      setSubmitMessage("success");
-
-      // Reset
-      setUserQuoteCred({
-        firstName: "",
-        lastName: "",
-        email: "",
-        number: "",
-        service: "",
-        messagDescription: "",
-      });
-    }
-
-    [...e.target.children].forEach((child) => {
-      [...child.children].forEach((child) => {
-        //Grand-Children elements
-        if (
-          (child.nodeName.toLowerCase() === "input" &&
-            child.type !== "submit") ||
-          (child.nodeName.toLowerCase() === "textarea" &&
-            child.type !== "submit")
-        ) {
-          if (child.value === "") {
-            child.classList.add("error");
-          }
-        }
-      });
-    });
-  };
+  useTimeOut(() => {
+    setSubmitMessage(null);
+  }, 3);
 
   return (
     <>
       {submitMessage && <SubmitMessage message={submitMessage} />}
-      <form className="price--quote_form" onSubmit={handleFormSubmit}>
+      <form
+        className="price--quote_form"
+        onSubmit={(event) => {
+          handleFormSubmit(
+            event,
+            userQuoteCred,
+            setSubmitMessage,
+            setUserQuoteCred,
+            defaultUserFormValues
+          );
+        }}
+      >
         <div className="price--quote_form-heading price--quote_form-span3">
           <h2>Get a quote. </h2>
         </div>
@@ -95,7 +50,9 @@ const PriceQuoteFormList = function () {
           <label htmlFor="firstName">First Name</label>
           <input
             id="firstName"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             className="price--quote_form-inputs"
             type="text"
             value={userQuoteCred.firstName}
@@ -108,7 +65,9 @@ const PriceQuoteFormList = function () {
           <input
             id="lastName"
             className="price--quote_form-inputs"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             type="text"
             value={userQuoteCred.lastName}
             name="lastName"
@@ -121,12 +80,14 @@ const PriceQuoteFormList = function () {
           <input
             id="email"
             className="price--quote_form-inputs"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             type="email"
             value={userQuoteCred.email}
             name="email"
             placeholder="E-Mail"
-            autoComplete="none"
+            autoComplete="email"
           />
         </div>
 
@@ -134,7 +95,9 @@ const PriceQuoteFormList = function () {
           <label htmlFor="number">Number</label>
           <input
             id="number"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             className="price--quote_form-inputs"
             type="text"
             value={userQuoteCred.number}
@@ -147,7 +110,9 @@ const PriceQuoteFormList = function () {
           <label htmlFor="services">What service do you seek?</label>
           <select
             id="services"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             className="price--quote_form-services-options price--quote_form-inputs"
             value={userQuoteCred.service}
             name="service"
@@ -163,7 +128,9 @@ const PriceQuoteFormList = function () {
           <label htmlFor="description">Tell us what you need help with? </label>
           <textarea
             id="description"
-            onChange={handleChange}
+            onChange={(event) => {
+              handleFormInputChange(event, setUserQuoteCred);
+            }}
             value={userQuoteCred.messagDescription}
             className="price--quote_form-inputs"
             name="messagDescription"

@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: ; */
   width: 100%;
   background: rgb(199, 222, 199);
 }
@@ -117,12 +116,12 @@
 
 .modal--message {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   position: fixed;
-  top: 42%;
-  left: 50%;
   z-index: 3;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
 }
 
 .modal--message > img {
@@ -198,5 +197,11 @@
 
   .price--quote_form-heading > h2 {
     width: 90%;
+  }
+}
+
+@media (max-width: 800px) {
+  .modal--message > h1 {
+    font-size: 1.3rem;
   }
 }

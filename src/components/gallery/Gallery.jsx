@@ -5,6 +5,7 @@ import GalleryImgEntity from "./gallery-img-entity/GalleryImgEntity";
 import GalleryImgsContainer from "./gallery-image-container/GalleryImageContainer";
 import GalleryPrevBtn from "./gallery-prev/GalleryPrevBtn";
 import GalleryNextBtn from "./gallery-next/GalleryNextBtn";
+import { scrollToTop } from "../../assets/constants";
 
 import useWindowSize from "../../custom-hooks/useWindowSize";
 import useApiFetch from "../../custom-hooks/useApiFetch";
@@ -104,7 +105,13 @@ const Gallery = function () {
       />
 
       <div className="gallery--des--btn">
-        <div onClick={handlePrevPage} className="gallery--attrib gallery--next">
+        <div
+          onClick={() => {
+            handlePrevPage();
+            scrollToTop();
+          }}
+          className="gallery--attrib gallery--next"
+        >
           {pageStartEnd === "first" ||
           apiImage?.length < imagesPerPage ||
           !apiImage ? (
@@ -113,7 +120,13 @@ const Gallery = function () {
             <GalleryPrevBtn />
           )}
         </div>
-        <div onClick={handleNextPage} className="gallery--attrib gallery--prev">
+        <div
+          onClick={() => {
+            handleNextPage();
+            scrollToTop();
+          }}
+          className="gallery--attrib gallery--prev"
+        >
           {pageStartEnd === "last" ||
           apiImage?.length < imagesPerPage ||
           !apiImage ? (

@@ -20,6 +20,10 @@
   grid-template-columns: 200px 200px;
 }
 
+.modal--message_heading {
+  color: #525151;
+}
+
 @media (max-width: 1162px) {
   .contact--form > form {
     display: flex;

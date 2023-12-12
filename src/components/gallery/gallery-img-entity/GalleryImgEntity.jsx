@@ -21,8 +21,7 @@ const GalleryImgEntity = React.memo(({ imageObj, handleImgClick }) => {
         <h3>{imageObj.date}</h3>
         <p>
           {`${imageObj.description[0].toUpperCase()}${imageObj.description.slice(
-            1,
-            -1
+            1
           )}.`}
         </p>
       </div>

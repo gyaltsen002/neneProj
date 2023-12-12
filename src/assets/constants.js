@@ -78,3 +78,8 @@ export const quoteOptions = [
   { id: 4, service: "Location Shoot" },
   { id: 5, service: "Other" },
 ];
+
+// Top of the page
+export const scrollToTop = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
