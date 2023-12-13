@@ -37,6 +37,35 @@
   right: -11.8rem;
 }
 
+.modal--images_des {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  /* backdrop-filter: blur(3px); */
+  background: rgba(99, 99, 99, 0.5);
+  /* filter: blur(3px); */
+  width: 100%;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+  transition: all 500ms ease-in-out;
+}
+
+.modal--images_des > h3 {
+  font: 0.9rem;
+}
+
+.modal--images_des > p {
+  font: 0.6rem;
+}
+
+.modal--images_des > h3,
+.modal--images_des > p {
+  padding: 0 1.4rem;
+  color: rgb(244, 178, 178);
+}
+
 @media (max-width: 800px) {
   .img--modal {
     min-width: 330px;

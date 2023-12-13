@@ -12,11 +12,9 @@ const GalleryImgsContainer = function (props) {
 
   return (
     <>
-      {isPending ? (
-        <div className="gallery">{dummyComponent}</div>
-      ) : (
-        <div className="gallery">{imageComponent}</div>
-      )}
+      <div className="gallery">
+        {isPending ? dummyComponent : imageComponent}
+      </div>
     </>
   );
 };

@@ -1,43 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import SubmitMessage from "../../modals/submit-modal/SubmitMessage";
-import useTimeOut from "../../../custom-hooks/useTimeOut";
-import handleFormSubmit from "../../../helpers/handleFormSubmit";
-import handleFormInputChange from "../../../helpers/handleFormInputChange";
 
 const ContactForm = function () {
-  const defaultUserFormValues = {
+  // User credentials for the form
+  const [userQuoteCred, setUserQuoteCred] = useState({
     firstName: "",
     lastName: "",
     email: "",
     messagDescription: "",
-  };
-
-  // User credentials for the form
-  const [userQuoteCred, setUserQuoteCred] = useState(defaultUserFormValues);
+  });
 
   // Submit Message to the user
   const [submitMessage, setSubmitMessage] = useState(null);
 
-  useTimeOut(() => {
-    setSubmitMessage(null);
-  }, 3);
+  useEffect(() => {
+    setTimeout(() => {
+      setSubmitMessage(null);
+    }, 2200);
+  }, [submitMessage]);
+
+  // Handling change for the change of input fields.
+  const handleChange = function (e) {
+    const { name, value } = e.target;
+
+    setUserQuoteCred((prevUserQuoteCred) => {
+      return {
+        ...prevUserQuoteCred,
+        [name]: value,
+      };
+    });
+    e.target.classList.remove("error");
+  };
+
+  // Handling submit
+  const handleFormSubmit = function (e) {
+    e.preventDefault();
+
+    const error = Object.values(userQuoteCred)
+      .map((userQuote) => {
+        if (userQuote === "") {
+          return false;
+        } else {
+          return true;
+        }
+      })
+      .includes(false);
+
+    if (error) {
+      setSubmitMessage("error");
+    } else {
+      setSubmitMessage("success");
+
+      // Reset
+      setUserQuoteCred({
+        firstName: "",
+        lastName: "",
+        email: "",
+        messagDescription: "",
+      });
+    }
+
+    [...e.target.children].forEach((child) => {
+      [...child.children].forEach((child) => {
+        //Grand-Children elements
+        if (
+          (child.nodeName.toLowerCase() === "input" &&
+            child.type !== "submit") ||
+          (child.nodeName.toLowerCase() === "textarea" &&
+            child.type !== "submit")
+        ) {
+          if (child.value === "") {
+            child.classList.add("error");
+          }
+        }
+      });
+    });
+  };
 
   return (
     <>
       {submitMessage && <SubmitMessage message={submitMessage} />}
       <div className="contact--form">
-        <form
-          onSubmit={(event) => {
-            handleFormSubmit(
-              event,
-              userQuoteCred,
-              setSubmitMessage,
-              setUserQuoteCred,
-              defaultUserFormValues
-            );
-          }}
-        >
+        <form onSubmit={handleFormSubmit}>
           <div className="price--quote_form-first_name">
             <label htmlFor="firstName">First Name</label>
             <input
@@ -47,9 +92,7 @@ const ContactForm = function () {
               name="firstName"
               value={userQuoteCred.firstName}
               placeholder="First Name"
-              onChange={(event) => {
-                handleFormInputChange(event, setUserQuoteCred);
-              }}
+              onChange={handleChange}
             />
           </div>
 
@@ -62,9 +105,7 @@ const ContactForm = function () {
               name="lastName"
               value={userQuoteCred.lastName}
               placeholder="Last Name"
-              onChange={(event) => {
-                handleFormInputChange(event, setUserQuoteCred);
-              }}
+              onChange={handleChange}
             />
           </div>
 
@@ -77,9 +118,7 @@ const ContactForm = function () {
               name="email"
               value={userQuoteCred.email}
               placeholder="E-Mail"
-              onChange={(event) => {
-                handleFormInputChange(event, setUserQuoteCred);
-              }}
+              onChange={handleChange}
               autoComplete="email"
             />
           </div>
@@ -94,9 +133,7 @@ const ContactForm = function () {
               name="messagDescription"
               value={userQuoteCred.messagDescription}
               placeholder="Tell us more about your enquiry."
-              onChange={(event) => {
-                handleFormInputChange(event, setUserQuoteCred);
-              }}
+              onChange={handleChange}
             />
           </div>
 

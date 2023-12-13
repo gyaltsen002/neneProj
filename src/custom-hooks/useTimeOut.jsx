@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useTimeOut = function (userFunc, userSeconds) {
+const useTimeOut = function (userFunc = null, userSeconds) {
   useEffect(() => {
     setTimeout(() => {
       userFunc();

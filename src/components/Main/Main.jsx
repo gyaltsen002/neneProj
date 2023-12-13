@@ -1,6 +1,6 @@
 import React from "react";
 
-import login from "../../assets/proto/login.webp";
+import login from "../../assets/prototype/login.webp";
 import "./main.css";
 
 const Main = function () {

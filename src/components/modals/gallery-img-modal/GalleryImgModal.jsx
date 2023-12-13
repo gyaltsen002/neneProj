@@ -54,15 +54,14 @@ const GalleryImgModal = function (props) {
       <Backdrop styleClass="modal" handleModalClose={closeModal} />
       <div className="img--modal">
         <LazyLoadImage className="img--modal_src" src={currentImg.image} />
-        {/* <div className="gallery--images_des">
+        <div className="modal--images_des">
           <h3>{currentImg.date}</h3>
           <p>
             {`${currentImg.description[0].toUpperCase()}${currentImg.description.slice(
-              1,
-              -1
+              1
             )}.`}
           </p>
-        </div> */}
+        </div>
         {/* <h1>I'm the modal.</h1> */}
         <>
           <ImCross className="modal--close" onClick={closeModal} />

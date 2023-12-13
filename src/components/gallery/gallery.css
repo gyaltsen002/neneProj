@@ -99,7 +99,7 @@
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 700px) {
   .gallery--images_des {
     opacity: 0;
     -webkit-transition: all 500ms ease-in-out;

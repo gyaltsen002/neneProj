@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { Navbar } from "../index";
-import logo from "../../assets/proto/logo.webp";
+import logo from "../../assets/prototype/logo.webp";
 import "./header.css";
 
 const Header = function () {
